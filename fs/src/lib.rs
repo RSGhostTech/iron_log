@@ -67,7 +67,7 @@ impl Write for FileStream
 impl FileStream
 {
     #[inline]
-    fn write_str<S>(&mut self,slice:S) -> io::Result<()>
+    pub fn write_str<S>(&mut self,slice:S) -> io::Result<()>
     where
         S:AsRef<str>
     {
@@ -76,7 +76,7 @@ impl FileStream
     }
 
     #[inline]
-    fn write_lines<S,L>(&mut self,lines:L) -> Result<(),usize>
+    pub fn write_lines<S,L>(&mut self,lines:L) -> Result<(),usize>
     where
         S:AsRef<str>,
         L:Into<Vec<S>>

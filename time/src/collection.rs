@@ -27,6 +27,13 @@ impl DateFormattingVec
 
 impl DateFormatter for DateFormattingVec
 {
+    /// 此实现是无效的
+    /// 因为它不需要使用as_str来获取参数
+    #[inline]
+    fn as_str(&self) -> &str {
+        ""
+    }
+
     #[inline]
     fn date_format(&self, time: &LocalTime) -> String {
         let mut parts = Vec::new();

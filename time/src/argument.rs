@@ -46,16 +46,9 @@ impl AsRef<str> for DateFormattingArgument
 
 impl DateFormatter for DateFormattingArgument
 {
-    fn date_format(&self, time: &LocalTime) -> String
-    {
-        let s = time.ref_local().format(self.as_ref()).to_string();
-
-        if s.is_empty()
-        {
-            return String::new()
-        }
-
-        s
+    #[inline]
+    fn as_str(&self) -> &str {
+        self.as_ref()
     }
 }
 
@@ -93,6 +86,13 @@ impl DateFormattingArgumentExtends
 
 impl DateFormatter for DateFormattingArgumentExtends
 {
+    /// 此实现是无效的
+    /// 因为它不需要使用as_str来获取参数
+    #[inline]
+    fn as_str(&self) -> &str {
+        ""
+    }
+
     fn date_format(&self, time: &LocalTime) -> String
     {
         let extends = self.api().date_format(time).parse::<u8>().unwrap();
@@ -125,6 +125,13 @@ pub enum DateFormattingArguments
 
 impl DateFormatter for DateFormattingArguments
 {
+    /// 此实现是无效的
+    /// 因为它不需要使用as_str来获取参数
+    fn as_str(&self) -> &str {
+        ""
+    }
+
+    #[inline]
     fn date_format(&self, time: &LocalTime) -> String {
         match self
         {
@@ -158,6 +165,7 @@ impl From<DateFormattingArgumentExtends> for DateFormattingArguments
 
 impl From<DateFormattingArgumentText> for DateFormattingArguments
 {
+    #[inline]
     fn from(value: DateFormattingArgumentText) -> Self
     {
         Self::Text(value)

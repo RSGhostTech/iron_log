@@ -1,15 +1,12 @@
 workspace = { members = ["fs", "time"] }
 [package]
 name = "iron_log"
-version = "0.1.3"
+version = "0.2.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-
-[dependencies.iron]
-git = "https://e.coding.net/g-dbqm0893/IronLog/iron.git"
 
 [dependencies.fs]
 path = "fs"
@@ -18,6 +15,10 @@ optional = true
 [dependencies.time]
 path = "time"
 optional = true
+
+[dependencies.iron]
+git = "https://e.coding.net/g-dbqm0893/IronLog/iron.git"
+version = "0.2.0"
 
 [features]
 default = []
